@@ -23,8 +23,8 @@ document.addEventListener("DOMContentLoaded", function () {
     setInterval(createHeart, 100);
 
     botonNo.addEventListener("mouseover", function () {
-        const maxX = window.innerWidth - botonNo.offsetWidth - 50; 
-        const maxY = window.innerHeight - botonNo.offsetHeight - 50; 
+        const maxX = window.innerWidth - botonNo.offsetWidth - 20; 
+        const maxY = window.innerHeight - botonNo.offsetHeight - 20; 
 
         let x, y;
 
@@ -36,30 +36,13 @@ document.addEventListener("DOMContentLoaded", function () {
             Math.abs(y - botonSi.offsetTop) < 50
         );
 
-        botonNo.style.left = x + "px";
-        botonNo.style.top = y + "px";
+        botonNo.style.position = "absolute";
+        botonNo.style.left = `${x}px`;
+        botonNo.style.top = `${y}px`;
     });
 
     botonSi.addEventListener("click", function () {
         descargar.style.display = "block";
         descargar.style.animation = "fadeIn 1s ease-in-out";
-    });
-
-    // Generar PDF dinámicamente
-    descargar.addEventListener("click", function (e) {
-        e.preventDefault();
-        // const { jsPDF } = windw.jspdf;
-        const doc = new jsPDF();       
-
-        doc.setFont("helvetica", "bold");
-        doc.setFontSize(22);
-        doc.text("Carta de San Valentín ❤️", 20, 30);
-
-        doc.setFontSize(14);
-        doc.setFont("helvetica", "normal");
-        const lines = doc.splitTextToSize(carta, 180);
-        doc.text(lines, 20, 50);
-
-        doc.save("carta.pdf");
     });
 });
